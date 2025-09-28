@@ -6,7 +6,7 @@
         content="A short starter to build website for your paper.">
   <meta name="keywords" content="Paper, website">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anonymous Submission</title>
+  <title>NuRisk: A VQA Dataset for Agent-Level Risk Assessment in Autonomous Driving</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -50,7 +50,42 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Anonymous Submission</h1>
+          <h1 class="title is-1 publication-title">NuRisk: A VQA Dataset for Agent-Level Risk Assessment in Autonomous Driving</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arXiv Link (placeholder) -->
+              <span class="link-block">
+                <span class="button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </span>
+              </span>
+              <!-- Code Link (placeholder) -->
+              <span class="link-block">
+                <span class="button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </span>
+              </span>
+              <!-- Dataset Link (placeholder) -->
+              <span class="link-block">
+                <span class="button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                    <span style="font-size: 1em;">🤗</span>
+                  </span>
+                  <span>Dataset</span>
+                </span>
+              </span>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -61,7 +96,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-        <img src="./static/images/teaser.jpg"
+        <img src="./figures/Framework.png"
                  class="teaser-image"
                 />
         <!-- You can also add a video as a teaser -->
@@ -72,7 +107,7 @@
         </video> 
         -->
       <h2 class="subtitle has-text-centered">
-        Anonymous submission - details will be provided after review.
+        Framework of NuRisk. Multi-modal inputs are processed into BEV scenes and risk metrics to enable conversation-based VQA with chain-of-thought reasoning, supporting risk evaluation, benchmarking, fine-tuning, and safety-critical scenario analysis.
       </h2>
     </div>
   </div>
@@ -90,7 +125,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            This is an anonymous submission for double-blind review. The abstract and detailed information will be available after the review process.
+            Understanding risk in autonomous driving requires not only perception and prediction, but also high-level reasoning about agent behavior and context. Current VLM-based methods primarily ground agents in static images and provide qualitative judgments, lacking the spatio–temporal reasoning needed to capture how risks evolve over time. To address this gap, we propose <strong>NuRisk</strong>, a comprehensive VQA dataset comprising 2.9K scenarios and 1.1M agent-level samples, built on real-world data from nuScenes and Waymo, completed with safety-critical scenarios from the CommonRoad simulator. The dataset provides Bird-Eye-View (BEV) based sequential images with quantitative, agent-level risk annotations, enabling spatio–temporal reasoning. We benchmark well-known VLMs across different prompting techniques and find that they fail to perform explicit spatio-temporal reasoning, resulting in a peak accuracy of 33% at high latency. To address these shortcomings, our fine-tuned 7B VLM agent improves accuracy to 41% and reduces latency by 75%, demonstrating explicit spatio-temporal reasoning capabilities that proprietary models lacked. While this represents a significant step forward, the modest accuracy underscores the profound challenge of the task, establishing <strong>NuRisk</strong> as a critical benchmark for advancing spatio-temporal reasoning in autonomous driving.
           </p>
         </div>
       </div>
@@ -101,19 +136,184 @@
 </section>
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <!-- Tables Side by Side -->
+        <div class="columns">
+          <!-- Left: Table 1 -->
+          <div class="column is-half">
+            <h3 class="title is-4">Table 1: Vision-Only Performance</h3>
+            <div class="content">
+              <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-size-7">
+                  <thead>
+                    <tr>
+                      <th><strong>Model + Technique</strong></th>
+                      <th><strong>MAE↓</strong></th>
+                      <th><strong>QWK↑</strong></th>
+                      <th><strong>Acc↑</strong></th>
+                      <th><strong>Time↓</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="has-background-grey-lighter" style="border-top: 2px solid #333; border-bottom: 2px solid #666;"><td colspan="5"><strong>Proprietary Models</strong></td></tr>
+                    <tr><td>Gemini-2.5-Flash (Baseline)</td><td>1.91</td><td>0.49</td><td>0.15</td><td>38.29</td></tr>
+                    <tr class="has-background-warning-light"><td><strong>Baseline + CP</strong></td><td><strong>1.23</strong></td><td><strong>0.89</strong></td><td><strong>0.33</strong></td><td><strong>45.88</strong></td></tr>
+                    <tr><td>Baseline + CP + CoT</td><td>1.20</td><td>0.87</td><td>0.30</td><td>96.67</td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL</td><td>1.20</td><td>0.88</td><td>0.32</td><td>107.32</td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>Gemini-2.5-Pro (Baseline)</td><td>2.00</td><td>0.49</td><td>0.15</td><td>40.13</td></tr>
+                    <tr class="has-background-warning-light"><td><strong>Baseline + CP</strong></td><td><strong>1.25</strong></td><td><strong>0.88</strong></td><td><strong>0.33</strong></td><td><strong>45.24</strong></td></tr>
+                    <tr><td>Baseline + CP + CoT</td><td>1.15</td><td>0.88</td><td>0.31</td><td>95.43</td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL</td><td>1.22</td><td>0.86</td><td>0.30</td><td>106.55</td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>Qwen-VL-Plus (Baseline)</td><td>0.63</td><td>0.55</td><td>0.13</td><td>8.81</td></tr>
+                    <tr><td>Baseline + CP</td><td>0.58</td><td>0.62</td><td>0.17</td><td>35.81</td></tr>
+                    <tr><td>Baseline + CP + CoT</td><td>0.62</td><td>0.59</td><td>0.16</td><td>37.40</td></tr>
+                    <tr class="has-background-warning-light"><td><strong>Baseline + CP + CoT + ICL</strong></td><td><strong>0.62</strong></td><td><strong>0.69</strong></td><td><strong>0.22</strong></td><td><strong>48.22</strong></td></tr>
+                    <tr class="has-background-warning-light" style="border-top: 2px solid #333;"><td><strong>Qwen-VL-Max (Baseline)</strong></td><td><strong>1.26</strong></td><td><strong>0.04</strong></td><td><strong>0.22</strong></td><td><strong>13.54</strong></td></tr>
+                    <tr><td>Baseline + CP</td><td>0.96</td><td>0.05</td><td>0.16</td><td>14.20</td></tr>
+                    <tr><td>Baseline + CP + CoT</td><td>1.20</td><td>-0.05</td><td>0.12</td><td>26.54</td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL</td><td>1.02</td><td>0.07</td><td>0.18</td><td>22.18</td></tr>
+                    <tr class="has-background-warning-light" style="border-top: 2px solid #333;"><td><strong>GPT-5-Mini (Baseline)</strong></td><td><strong>1.16</strong></td><td><strong>0.14</strong></td><td><strong>0.30</strong></td><td><strong>27.67</strong></td></tr>
+                    <tr><td>Baseline + CP</td><td>1.23</td><td>0.07</td><td>0.25</td><td>40.49</td></tr>
+                    <tr><td>Baseline + CP + CoT</td><td>1.14</td><td>0.06</td><td>0.25</td><td>47.65</td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL</td><td>1.24</td><td>0.05</td><td>0.25</td><td>53.34</td></tr>
+                    <tr class="has-background-grey-lighter" style="border-top: 2px solid #333; border-bottom: 2px solid #666;"><td colspan="5"><strong>Open-Source Models</strong></td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>InternVL3-8B (Baseline)</td><td>0.62</td><td>0.56</td><td>0.14</td><td>6.55</td></tr>
+                    <tr><td>Baseline + CP</td><td>0.55</td><td>0.70</td><td>0.20</td><td>7.15</td></tr>
+                    <tr class="has-background-warning-light"><td><strong>Baseline + CP + CoT</strong></td><td><strong>0.54</strong></td><td><strong>0.70</strong></td><td><strong>0.21</strong></td><td><strong>11.88</strong></td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL</td><td>0.33</td><td>0.72</td><td>0.19</td><td>11.68</td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>Qwen2.5-VL-7B (Baseline)</td><td>1.87</td><td>0.51</td><td>0.14</td><td>11.98</td></tr>
+                    <tr><td>Baseline + CP</td><td>1.88</td><td>0.46</td><td>0.12</td><td>11.60</td></tr>
+                    <tr><td>Baseline + CP + CoT</td><td>1.76</td><td>0.58</td><td>0.18</td><td>16.66</td></tr>
+                    <tr class="has-background-warning-light"><td><strong>Baseline + CP + CoT + ICL</strong></td><td><strong>1.53</strong></td><td><strong>0.68</strong></td><td><strong>0.22</strong></td><td><strong>19.64</strong></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="is-size-7 has-text-grey">
+                Performance comparison of prompting strategies. Arrows indicate if higher (↑) or lower (↓) values are better. CP: Contextual Prompting, CoT: Chain-of-Thought, ICL: In-Context Learning.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Right: Table 2 -->
+          <div class="column is-half">
+            <h3 class="title is-4">Table 2: Physics-Enhanced Performance</h3>
+            <div class="content">
+              <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-size-7">
+                  <thead>
+                    <tr>
+                      <th><strong>Model + Technique + Modality</strong></th>
+                      <th><strong>MAE↓</strong></th>
+                      <th><strong>QWK↑</strong></th>
+                      <th><strong>Acc↑</strong></th>
+                      <th><strong>Time↓</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="has-background-grey-lighter" style="border-top: 2px solid #333; border-bottom: 2px dashed #666;"><td colspan="5"><strong>Proprietary Models</strong></td></tr>
+                    <tr><td>Gemini-1.5-Pro (Text)</td><td>-</td><td>-</td><td>0.83</td><td>25.00</td></tr>
+                    <tr><td>Gemini-2.5-Flash (Baseline) (Single)</td><td>1.08</td><td>0.44</td><td>0.11</td><td>7.66</td></tr>
+                    <tr><td>Baseline + CP (Single+Text)</td><td>0.21</td><td>0.83</td><td>0.91</td><td>24.51</td></tr>
+                    <tr><td>Baseline + CP + CoT (Single+Text)</td><td>0.20</td><td>0.84</td><td>0.91</td><td>32.63</td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL (Single+Text)</td><td>0.22</td><td>0.82</td><td>0.90</td><td>31.57</td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>Gemini-2.5-Flash (Baseline) (Multi)</td><td>1.91</td><td>0.49</td><td>0.15</td><td>38.29</td></tr>
+                    <tr><td>Baseline + CP (Multi+Text)</td><td>0.20</td><td>0.84</td><td>0.92</td><td>26.76</td></tr>
+                    <tr><td>Baseline + CP + CoT (Multi+Text)</td><td>0.20</td><td>0.84</td><td>0.92</td><td>34.72</td></tr>
+                    <tr class="has-background-success-light"><td><strong>Baseline + CP + CoT + ICL (Multi+Text)</strong></td><td><strong>0.19</strong></td><td><strong>0.85</strong></td><td><strong>0.92</strong></td><td><strong>40.55</strong></td></tr>
+                    <tr class="has-background-grey-lighter" style="border-top: 2px solid #333; border-bottom: 2px dashed #666;"><td colspan="5"><strong>Open-Source Models</strong></td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>InternVL3-8B (Baseline) (Single)</td><td>1.65</td><td>0.14</td><td>0.13</td><td>1.36</td></tr>
+                    <tr><td>Baseline + CP (Single+Text)</td><td>1.55</td><td>0.20</td><td>0.20</td><td>1.54</td></tr>
+                    <tr class="has-background-warning-light"><td><strong>Baseline + CP + CoT (Single+Text)</strong></td><td><strong>0.95</strong></td><td><strong>0.44</strong></td><td><strong>0.39</strong></td><td><strong>21.14</strong></td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL (Single+Text)</td><td>1.23</td><td>0.39</td><td>0.30</td><td>32.84</td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>InternVL3-8B (Baseline) (Multi)</td><td>0.62</td><td>0.56</td><td>0.14</td><td>6.55</td></tr>
+                    <tr><td>Baseline + CP (Multi+Text)</td><td>1.71</td><td>0.18</td><td>0.16</td><td>2.01</td></tr>
+                    <tr><td>Baseline + CP + CoT (Multi+Text)</td><td>1.13</td><td>0.30</td><td>0.33</td><td>23.17</td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL (Multi+Text)</td><td>1.18</td><td>0.40</td><td>0.38</td><td>33.18</td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>Qwen2.5-VL-7B (Baseline) (Single)</td><td>1.95</td><td>0.12</td><td>0.12</td><td>2.63</td></tr>
+                    <tr><td>Baseline + CP (Single+Text)</td><td>1.70</td><td>0.18</td><td>0.18</td><td>2.96</td></tr>
+                    <tr><td>Baseline + CP + CoT (Single+Text)</td><td>1.71</td><td>0.18</td><td>0.18</td><td>13.02</td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL (Single+Text)</td><td>1.43</td><td>0.27</td><td>0.18</td><td>44.91</td></tr>
+                    <tr style="border-top: 2px solid #333;"><td>Qwen2.5-VL-7B (Baseline) (Multi)</td><td>1.87</td><td>0.51</td><td>0.14</td><td>11.98</td></tr>
+                    <tr><td>Baseline + CP (Multi+Text)</td><td>1.78</td><td>0.16</td><td>0.16</td><td>6.50</td></tr>
+                    <tr class="has-background-warning-light"><td><strong>Baseline + CP + CoT (Multi+Text)</strong></td><td><strong>1.55</strong></td><td><strong>0.20</strong></td><td><strong>0.25</strong></td><td><strong>22.95</strong></td></tr>
+                    <tr><td>Baseline + CP + CoT + ICL (Multi+Text)</td><td>1.58</td><td>0.20</td><td>0.23</td><td>33.18</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="is-size-7 has-text-grey">
+                Performance with physics-enhanced inputs. CP: Contextual Prompting, CoT: Chain-of-Thought, ICL: In-Context Learning. Multi/Single refers to Sequential/single-image input.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Below - Parallel Layout -->
+        <div class="columns">
+          <!-- Left: Finetune Chart (60%) -->
+          <div class="column is-three-fifths">
+            <div class="content has-text-centered">
+              <h3 class="title is-4">NuRisk VLM Agent Fine-tuning Architecture</h3>
+              <img src="./figures/Finetune.png"
+                   class="interpolation-image"
+                   alt="NuRisk VLM Agent Fine-tuning Architecture"
+                   style="max-width: 100%; height: auto;"/>
+              <p class="is-size-7 has-text-grey">NuRisk VLM Agent Fine-tuning Architecture.</p>
+            </div>
+          </div>
+          
+          <!-- Right: Radar Chart (40%) -->
+          <div class="column is-two-fifths">
+            <div class="content has-text-centered">
+              <h3 class="title is-4">Performance Radar Chart</h3>
+              <img src="./figures/experiment3.png"
+                   class="interpolation-image"
+                   alt="Experimental results showing VLM performance comparison"
+                   style="max-width: 100%; height: auto;"/>
+              <p class="is-size-7 has-text-grey">Performance comparison of different VLM approaches on the NuRisk dataset.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Results. -->
+  </div>
+</section>
 
 
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">TODO</h2>
+        <div class="content has-text-left">
+          <ul class="is-size-5" style="list-style: none;">
+            <li>☐ 🚀 Release Code</li>
+            <li>☐ 📊 Release Dataset</li>
+            <li>☐ 🏆 Release Checkpoints</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{anonymous2024,
-  author    = {Anonymous},
-  title     = {Anonymous Submission},
-  journal   = {Under Review},
-  year      = {2024},
-}</code></pre>
+    <pre><code>
+</code></pre>
   </div>
 </section>
 
